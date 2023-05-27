@@ -10,8 +10,9 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Component
 public class UserDTO {
-    private String firstname;
-    private String middleName;
-    private String lastname;
-    private String email;
+  private String firstname;
+  private String middleName;
+  private String lastname;
+  private String email;
+  private BookingDTO bookingDTOS;
 }

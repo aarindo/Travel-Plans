@@ -1,0 +1,14 @@
+package com.lhind.internship.TravelPlans.repository;
+
+import com.lhind.internship.TravelPlans.model.entity.User;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
+  Optional<User> findUserByEmail(String email);
+
+  Optional<User> findUserById(Long id);
+}

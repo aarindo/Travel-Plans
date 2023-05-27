@@ -10,10 +10,9 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class BookingDTO {
+public class BookingCreateDTO {
   private String userEmail;
-  private List<Long> flightIds;
-  private List<String> flightClasses;
+  List<Long> flightIds;
+  List<String> flightClasses;
   private String bookingStatus;
-  private String cancellationAnswer;
 }

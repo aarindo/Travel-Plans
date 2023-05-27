@@ -1,50 +1,52 @@
 package com.lhind.internship.TravelPlans.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.lhind.internship.TravelPlans.model.enums.RoleEnum;
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id", nullable = false, unique = true)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id", nullable = false, unique = true)
+  private Long id;
 
-    @Column(name = "Firstname", nullable = false)
-    private String firstname;
+  @Column(name = "firstname", nullable = false)
+  private String firstname;
 
-    @Column(name = "MiddleName")
-    private String middleName;
+  @Column(name = "middlename")
+  private String middleName;
 
-    @Column(name = "Lastname", nullable = false)
-    private String lastname;
+  @Column(name = "lastname", nullable = false)
+  private String lastname;
 
-    @Column(name = "Email", nullable = false, unique = true)
-    private String email;
+  @Column(name = "email", nullable = false, unique = true)
+  private String email;
 
-    @Column(name = "Password", nullable = false)
-    private String password;
+  @Column(name = "password", nullable = false)
+  private String password;
 
-    @Column(name = "Phone")
-    private String phoneNumber;
+  @Column(name = "phone")
+  private String phoneNumber;
 
-    @Column(name = "Address")
-    private String address;
+  @Column(name = "address")
+  private String address;
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "Role", nullable = false)
-    private RoleEnum role;
+  @Enumerated(value = EnumType.STRING)
+  @Column(name = "role", nullable = false)
+  private RoleEnum role;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
-    private List<Booking> bookings;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonBackReference
+  private List<Booking> bookings = new ArrayList<>();
 }

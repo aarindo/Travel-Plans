@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Component
 public class FlightClassDTO {
-    private Integer economy;
-    private Integer premiumEconomy;
-    private Integer business;
-    private Integer firstClass;
+  private Integer economy;
+  private Integer premiumEconomy;
+  private Integer business;
+  private Integer firstClass;
 }

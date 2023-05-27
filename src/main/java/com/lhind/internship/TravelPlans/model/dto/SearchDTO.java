@@ -1,6 +1,6 @@
 package com.lhind.internship.TravelPlans.model.dto;
 
-import java.util.List;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,10 +10,9 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class BookingDTO {
-  private String userEmail;
-  private List<Long> flightIds;
-  private List<String> flightClasses;
-  private String bookingStatus;
-  private String cancellationAnswer;
+public class SearchDTO {
+  private String origin;
+  private String destination;
+  private Date flightDate;
+  private String airlineCode;
 }
