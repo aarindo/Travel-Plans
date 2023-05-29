@@ -4,12 +4,12 @@
 
     <appender name="FILE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>C:/Users/A/Desktop/logs/log_file.log</File>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>C:/Users/A/Desktop/log_file.%d.log.gz</fileNamePattern>
-            <maxHistory>30</maxHistory>
-            <totalSizeCap>1GB</totalSizeCap>
-            <cleanHistoryOnStart>true</cleanHistoryOnStart>
-        </rollingPolicy>
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--            <fileNamePattern>C:/Users/A/Desktop/log_file.%d.log.gz</fileNamePattern>-->
+<!--            <maxHistory>30</maxHistory>-->
+<!--            <totalSizeCap>1GB</totalSizeCap>-->
+<!--            <cleanHistoryOnStart>true</cleanHistoryOnStart>-->
+<!--        </rollingPolicy>-->
         <encoder>
             <pattern>%date - %-5level - [%thread] %c{2} - %message%n</pattern>
         </encoder>

@@ -1,7 +1,7 @@
 package com.lhind.internship.TravelPlans.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.lhind.internship.TravelPlans.model.enums.FlightClass;
+import com.lhind.internship.TravelPlans.model.enums.FlightClasses;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -32,16 +32,16 @@ public class FlightBooking {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "flight_id")
-  @JsonBackReference
+//  @JsonBackReference
   Flight flight;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "booking_id")
-  @JsonBackReference
+//  @JsonBackReference
   Booking booking;
 
   @Column(name = "flight_class")
   @Enumerated(value = EnumType.STRING)
   @NotNull
-  FlightClass flightClass;
+  FlightClasses flightClasses;
 }

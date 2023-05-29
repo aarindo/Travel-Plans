@@ -47,6 +47,6 @@ public class User {
   private RoleEnum role;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-  @JsonBackReference
+//  @JsonBackReference
   private List<Booking> bookings = new ArrayList<>();
 }

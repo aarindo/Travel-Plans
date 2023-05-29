@@ -40,10 +40,10 @@ public class Booking implements Serializable {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", referencedColumnName = "id")
-  @JsonBackReference
+//  @JsonBackReference
   private User user;
 
   @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
-  @JsonBackReference
+//  @JsonBackReference
   List<FlightBooking> flightBookings = new ArrayList<>();
 }

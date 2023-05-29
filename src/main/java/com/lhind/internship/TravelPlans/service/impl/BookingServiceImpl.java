@@ -5,13 +5,14 @@ import com.lhind.internship.TravelPlans.model.entity.Booking;
 import com.lhind.internship.TravelPlans.model.entity.Flight;
 import com.lhind.internship.TravelPlans.model.entity.FlightBooking;
 import com.lhind.internship.TravelPlans.model.enums.BookingStatus;
-import com.lhind.internship.TravelPlans.model.enums.FlightClass;
+import com.lhind.internship.TravelPlans.model.enums.FlightClasses;
 import com.lhind.internship.TravelPlans.repository.BookingRepository;
 import com.lhind.internship.TravelPlans.repository.FlightBookingRepository;
 import com.lhind.internship.TravelPlans.repository.FlightRepository;
 import com.lhind.internship.TravelPlans.repository.FlightTypeRepository;
 import com.lhind.internship.TravelPlans.repository.UserRepository;
 import com.lhind.internship.TravelPlans.service.BookingService;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -60,20 +61,19 @@ public class BookingServiceImpl implements BookingService {
                       .findById(el)
                       .orElseThrow(
                           () -> new IllegalArgumentException("Cannot find flight with id " + el));
-              // TODO, finish utils
 
-              //            if (LocalDateTime.now().isBefore(flight.getFlightDate())) {
-              //                throw new IllegalArgumentException("Flight has already departured
-              // at" + flight.getFlightDate());
-              //            }
+              if (LocalDate.now().isBefore(flight.getFlightDate())) {
+                throw new IllegalArgumentException(
+                    "Flight has already departured at" + flight.getFlightDate());
+              }
               flights.add(flight);
             });
-    List<FlightClass> flightClasses = new ArrayList<>();
+    List<FlightClasses> flightClasses = new ArrayList<>();
     bookingCreateDTO.getFlightClasses().stream()
         .forEach(
             el -> {
               flightClasses.add(
-                  FlightClass.fromStr(el)
+                  FlightClasses.fromStr(el)
                       .orElseThrow(
                           () -> new IllegalArgumentException("Cannot find flight class " + el)));
             });
@@ -84,7 +84,7 @@ public class BookingServiceImpl implements BookingService {
             idx -> {
               var flightTypeFound =
                   flightTypeRepository
-                      .findByFlightIdAndFlightClass(
+                      .findByFlightIdAndFlightClasses(
                           flights.get(idx).getId(), flightClasses.get(idx))
                       .orElseThrow(
                           () ->
@@ -99,7 +99,7 @@ public class BookingServiceImpl implements BookingService {
                 throw new IllegalArgumentException("There are no available seats");
               }
               FlightBooking flightBooking = new FlightBooking();
-              flightBooking.setFlightClass(flightClasses.get(idx));
+              flightBooking.setFlightClasses(flightClasses.get(idx));
               flightBooking.setFlight(flights.get(idx));
               flightBookingRepository.save(flightBooking);
               flightBookings.add(flightBooking);
@@ -113,6 +113,15 @@ public class BookingServiceImpl implements BookingService {
     flightBookings.stream().forEach(el -> el.setBooking(booking));
     flightBookingRepository.saveAll(flightBookings);
     return booking;
+  }
+
+  @Override
+  public Booking updateBooking(Long id, Booking booking) {
+    var bookingFound =
+        bookingRepository
+            .findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Cannot find booking with id " + id));
+    return bookingRepository.save(bookingFound);
   }
 
   @Override

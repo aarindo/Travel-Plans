@@ -5,7 +5,7 @@ import com.lhind.internship.TravelPlans.repository.UserRepository;
 import com.lhind.internship.TravelPlans.service.UserService;
 import java.util.List;
 import lombok.AllArgsConstructor;
-// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
   @Override
   public List<User> getAllUsers() {
@@ -21,22 +22,13 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User createUser(User user) {
+    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
     return userRepository.save(user);
   }
 
   @Override
   public User updateUser(Long id, User user) {
-    user.setFirstname(user.getFirstname());
-    user.setMiddleName(user.getMiddleName());
-    user.setLastname(user.getLastname());
-    user.setAddress(user.getAddress());
-    user.setEmail(user.getEmail());
-    //        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-    user.setPassword(user.getPassword());
-    user.setPhoneNumber(user.getPhoneNumber());
-    user.setAddress(user.getAddress());
-    user.setRole(user.getRole());
-    return userRepository.save(user);
+    return getUser(user);
   }
 
   @Override
@@ -47,5 +39,26 @@ public class UserServiceImpl implements UserService {
   @Override
   public void deleteUser(Long id) {
     userRepository.delete(userRepository.findById(id).get());
+  }
+
+  @Override
+  public User register(User user) {
+    if (userRepository.findUserByEmail(user.getEmail()).isPresent()) {
+      throw new IllegalArgumentException("An user with this email address already exists");
+    }
+    return getUser(user);
+  }
+
+  private User getUser(User user) {
+    user.setFirstname(user.getFirstname());
+    user.setMiddleName(user.getMiddleName());
+    user.setLastname(user.getLastname());
+    user.setAddress(user.getAddress());
+    user.setEmail(user.getEmail());
+    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    user.setPhoneNumber(user.getPhoneNumber());
+    user.setAddress(user.getAddress());
+    user.setRole(user.getRole());
+    return userRepository.save(user);
   }
 }

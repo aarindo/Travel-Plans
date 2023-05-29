@@ -2,7 +2,8 @@ package com.lhind.internship.TravelPlans.util;
 
 import com.lhind.internship.TravelPlans.model.entity.Flight;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,23 +11,22 @@ public class ValidationUtil {
 
   public Boolean isDestinationCorrect(Flight flight) {
 
-    if (flight.getOrigin().equals(flight.getDestination())) return false;
-    else return true;
+    return !flight.getOrigin().equals(flight.getDestination());
   }
 
   public Boolean isFlightDateCorrect(Flight flight) {
-    Date today = new Date();
+    LocalDate today;
+    today = LocalDate.now();
     SimpleDateFormat dateOnly = new SimpleDateFormat("yyyy-MM-dd");
     dateOnly.format(today);
-    if (flight.getFlightDate().after(today)) return true;
-    else return false;
+    return flight.getFlightDate().isAfter(today);
   }
 
   public Boolean isDepartureTimeCorrect(Flight flight) {
-    Date time = new Date();
+    LocalTime time;
+    time = LocalTime.now();
     SimpleDateFormat timeOnly = new SimpleDateFormat("HH:mm");
     timeOnly.format(time);
-    if (flight.getDepartureTime().after(time)) return true;
-    else return false;
+    return flight.getDepartureTime().isAfter(time);
   }
 }
