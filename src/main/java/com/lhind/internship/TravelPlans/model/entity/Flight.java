@@ -2,11 +2,13 @@ package com.lhind.internship.TravelPlans.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lhind.internship.TravelPlans.model.enums.AirlineCode;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,7 +40,7 @@ public class Flight {
   private String destination;
 
   @Column(name = "date", nullable = false)
-  @JsonFormat(pattern = "dd-MM-yyyy")
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private LocalDate flightDate;
 
   @Column(name = "time", nullable = false)
@@ -48,11 +50,11 @@ public class Flight {
   @Column(name = "aircrafttype")
   private String aircraftType;
 
-  @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 //  @JsonBackReference
   private List<FlightType> flightTypes = new ArrayList<>();
 
-  @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 //  @JsonBackReference
   List<FlightBooking> flightBookings = new ArrayList<>();
 }

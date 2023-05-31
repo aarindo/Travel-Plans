@@ -7,15 +7,15 @@ import com.lhind.internship.TravelPlans.model.entity.User;
 import com.lhind.internship.TravelPlans.model.enums.AirlineCode;
 import com.lhind.internship.TravelPlans.repository.FlightBookingRepository;
 import com.lhind.internship.TravelPlans.repository.FlightRepository;
-import com.lhind.internship.TravelPlans.repository.UserRepository;
 import com.lhind.internship.TravelPlans.service.FlightService;
 import com.lhind.internship.TravelPlans.util.ValidationUtil;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -24,7 +24,6 @@ public class FlightServiceImpl implements FlightService {
   private static final Logger LOGGER = LoggerFactory.getLogger(FlightServiceImpl.class);
   private final FlightRepository flightRepository;
   private final FlightBookingRepository flightBookingRepository;
-  private final UserRepository userRepository;
   private final ValidationUtil validationUtil;
 
   @Override
@@ -35,8 +34,8 @@ public class FlightServiceImpl implements FlightService {
   @Override
   public Flight createFlight(Flight flight) {
     if (validationUtil.isDestinationCorrect(flight)
-        && !validationUtil.isFlightDateCorrect(flight)
-        && !validationUtil.isDepartureTimeCorrect(flight)) return flightRepository.save(flight);
+        && validationUtil.isFlightDateCorrect(flight)
+        && validationUtil.isDepartureTimeCorrect(flight)) return flightRepository.save(flight);
     else throw new IllegalArgumentException("Cannot create flight with wrong data");
   }
 
@@ -47,11 +46,21 @@ public class FlightServiceImpl implements FlightService {
             .findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Cannot find flight with id " + id));
     if (flightBookingRepository.existsByFlightId(id)) {
-      flightFound.setDepartureTime(flight.getDepartureTime());
-      return flightRepository.save(flightFound);
+      if (validationUtil.isDepartureTimeCorrect(flight)) {
+        flightFound.setDepartureTime(flight.getDepartureTime());
+        return flightRepository.save(flightFound);
+      } else throw new IllegalArgumentException("Cannot create flight with wrong departure time");
     } else {
-      return flightRepository.save(flight);
+      if (validationUtil.isDestinationCorrect(flight)
+              && validationUtil.isFlightDateCorrect(flight)
+              && validationUtil.isDepartureTimeCorrect(flight)) return flightRepository.save(flight);
+      else throw new IllegalArgumentException("Cannot create flight with wrong data");
     }
+  }
+
+  @Override
+  public Flight getFlightById(Long id) {
+    return flightRepository.findFlightById(id);
   }
 
   @Override
@@ -63,13 +72,6 @@ public class FlightServiceImpl implements FlightService {
     return flightRepository.findByOriginAndDestinationAndFlightDateAndAirlineCode(
         searchDTO.getOrigin(), searchDTO.getDestination(),
         searchDTO.getFlightDate(), AirlineCode.fromStr(searchDTO.getAirlineCode()).get());
-  }
-
-  public List<User> getUsersByFlightId(Long id) {
-    List<FlightBooking> flightBookings = flightBookingRepository.findAllByFlightId(id);
-    List<User> users = new ArrayList<>();
-    flightBookings.stream().forEach(booking -> users.add(booking.getBooking().getUser()));
-    return users;
   }
 
   @Override

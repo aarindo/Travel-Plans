@@ -1,6 +1,9 @@
 package com.lhind.internship.TravelPlans.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lhind.internship.TravelPlans.model.enums.AirlineCode;
+
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +21,7 @@ public class FlightDTO {
   private String flightNumber;
   private String origin;
   private String destination;
-  private Date departureTime;
+  @JsonFormat(pattern = "HH-mm")
+  private LocalTime departureTime;
   private List<BookingDTO> bookingDTOS = new ArrayList<>();
 }

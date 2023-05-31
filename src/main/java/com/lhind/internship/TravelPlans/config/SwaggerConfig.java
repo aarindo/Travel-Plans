@@ -10,6 +10,6 @@ public class SwaggerConfig {
 
   @Bean
   public OpenAPI openAPI() {
-    return new OpenAPI().info(new Info().title("Travel Plans").version("1.2.0"));
+    return new OpenAPI().info(new Info().title("Travel Plans").version("1.2.5"));
   }
 }

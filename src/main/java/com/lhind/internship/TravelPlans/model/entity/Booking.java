@@ -34,16 +34,12 @@ public class Booking implements Serializable {
   @Column(name = "cancellation_answer")
   private String cancellationAnswer;
 
-  @Column(name = "created_at")
-  @NotNull
-  private LocalDateTime createdAt = LocalDateTime.now();
-
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", referencedColumnName = "id")
 //  @JsonBackReference
   private User user;
 
-  @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 //  @JsonBackReference
   List<FlightBooking> flightBookings = new ArrayList<>();
 }

@@ -62,9 +62,9 @@ public class BookingServiceImpl implements BookingService {
                       .orElseThrow(
                           () -> new IllegalArgumentException("Cannot find flight with id " + el));
 
-              if (LocalDate.now().isBefore(flight.getFlightDate())) {
+              if (LocalDate.now().isAfter(flight.getFlightDate())) {
                 throw new IllegalArgumentException(
-                    "Flight has already departured at" + flight.getFlightDate());
+                    "Flight has already departured at " + flight.getFlightDate());
               }
               flights.add(flight);
             });
@@ -135,14 +135,6 @@ public class BookingServiceImpl implements BookingService {
     return booking;
   }
 
-  @Override
-  public List<Booking> findByUserId(Long id) {
-    var user =
-        userRepository
-            .findUserById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Cannot find user with id " + id));
-    return bookingRepository.findAllByUser(user);
-  }
 
   @Override
   public void deleteBooking(Long id) {

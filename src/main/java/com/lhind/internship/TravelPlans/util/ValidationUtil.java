@@ -14,19 +14,17 @@ public class ValidationUtil {
     return !flight.getOrigin().equals(flight.getDestination());
   }
 
-  public Boolean isFlightDateCorrect(Flight flight) {
-    LocalDate today;
-    today = LocalDate.now();
-    SimpleDateFormat dateOnly = new SimpleDateFormat("yyyy-MM-dd");
-    dateOnly.format(today);
-    return flight.getFlightDate().isAfter(today);
+  public boolean isFlightDateCorrect(Flight flight) {
+    LocalDate today = LocalDate.now();
+    LocalDate flightDate = flight.getFlightDate();
+
+    return !flightDate.isBefore(today);
   }
 
-  public Boolean isDepartureTimeCorrect(Flight flight) {
-    LocalTime time;
-    time = LocalTime.now();
-    SimpleDateFormat timeOnly = new SimpleDateFormat("HH:mm");
-    timeOnly.format(time);
-    return flight.getDepartureTime().isAfter(time);
+  public boolean isDepartureTimeCorrect(Flight flight) {
+    LocalTime time = LocalTime.now();
+    LocalTime departureTime = flight.getDepartureTime();
+
+    return departureTime.isAfter(time);
   }
 }

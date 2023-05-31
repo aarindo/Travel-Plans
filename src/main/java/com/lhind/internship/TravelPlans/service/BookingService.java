@@ -12,8 +12,5 @@ public interface BookingService {
   Booking cancelBooking(Long id);
 
   Booking updateBooking(Long id, Booking booking);
-
-  List<Booking> findByUserId(Long userId);
-
   void deleteBooking(Long id);
 }
