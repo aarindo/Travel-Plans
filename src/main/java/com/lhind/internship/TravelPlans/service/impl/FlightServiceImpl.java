@@ -2,8 +2,7 @@ package com.lhind.internship.TravelPlans.service.impl;
 
 import com.lhind.internship.TravelPlans.model.dto.SearchDTO;
 import com.lhind.internship.TravelPlans.model.entity.Flight;
-import com.lhind.internship.TravelPlans.model.entity.FlightBooking;
-import com.lhind.internship.TravelPlans.model.entity.User;
+import com.lhind.internship.TravelPlans.model.entity.FlightType;
 import com.lhind.internship.TravelPlans.model.enums.AirlineCode;
 import com.lhind.internship.TravelPlans.repository.FlightBookingRepository;
 import com.lhind.internship.TravelPlans.repository.FlightRepository;
@@ -34,9 +33,21 @@ public class FlightServiceImpl implements FlightService {
   @Override
   public Flight createFlight(Flight flight) {
     if (validationUtil.isDestinationCorrect(flight)
-        && validationUtil.isFlightDateCorrect(flight)
-        && validationUtil.isDepartureTimeCorrect(flight)) return flightRepository.save(flight);
-    else throw new IllegalArgumentException("Cannot create flight with wrong data");
+            && validationUtil.isFlightDateCorrect(flight)
+            && validationUtil.isDepartureTimeCorrect(flight)) {
+
+      List<FlightType> flightTypes = new ArrayList<>();
+      for (FlightType flightType : flight.getFlightTypes()) {
+        flightType.setFlight(flight);
+        flightTypes.add(flightType);
+      }
+
+      flight.setFlightTypes(flightTypes);
+
+      return flightRepository.save(flight);
+    } else {
+      throw new IllegalArgumentException("Cannot create flight with wrong data");
+    }
   }
 
   @Override

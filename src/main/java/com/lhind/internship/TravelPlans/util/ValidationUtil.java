@@ -1,10 +1,10 @@
 package com.lhind.internship.TravelPlans.util;
 
 import com.lhind.internship.TravelPlans.model.entity.Flight;
-import java.text.SimpleDateFormat;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-import org.springframework.stereotype.Component;
 
 @Component
 public class ValidationUtil {
@@ -22,9 +22,14 @@ public class ValidationUtil {
   }
 
   public boolean isDepartureTimeCorrect(Flight flight) {
-    LocalTime time = LocalTime.now();
-    LocalTime departureTime = flight.getDepartureTime();
+    if (isFlightDateCorrect(flight)){
+      return true;
+    }
+    else {
+      LocalTime time = LocalTime.now();
+      LocalTime departureTime = flight.getDepartureTime();
 
-    return departureTime.isAfter(time);
+      return departureTime.isAfter(time);
+    }
   }
 }

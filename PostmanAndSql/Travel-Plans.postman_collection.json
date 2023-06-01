@@ -1,0 +1,755 @@
+{
+	"info": {
+		"_postman_id": "8c1b4590-8d7f-4eb9-beaf-61cf3c72d711",
+		"name": "Travel-Plans",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27123232"
+	},
+	"item": [
+		{
+			"name": "CRUD",
+			"item": [
+				{
+					"name": "USER",
+					"item": [
+						{
+							"name": "Add user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU1NTg0NDgsImV4cCI6MTY4NTU3NjQ0OH0.JDzHFtwfTuqBc5WPmd6WSRIBbl7bX1PDcwiR8cjWGiA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"Arindo\",\r\n    \"middlename\": \" \",\r\n    \"lastname\": \"Qato\",\r\n    \"email\": \"arindoa\",\r\n    \"password\": \"po\",\r\n    \"phone\":\"63527481\",\r\n    \"address\":\"Tirane\",\r\n    \"role\": \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/users/add",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InNvcGhpYS50aG9tYXNAZXhhbXBsZS5jb20iLCJpYXQiOjE2ODU1Mzc4MTUsImV4cCI6MTY4NTU1NTgxNX0.J9ZqGP576802ExmLCxCXH0f0UHeUnfrd5n-22n7g3cc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/users",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU1NTMxNDksImV4cCI6MTY4NTU3MTE0OX0.lPCVJazuNinDc665uxZsIjwZYG8pI1V2DpdwMsy6ac4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"firstname\",\r\n    \"middleName\": \"middleName\",\r\n    \"lastname\": \"lastname\",\r\n    \"email\" : \"email\",\r\n    \"password\": \"string\",\r\n    \"phoneNumber\": \"numri\",\r\n    \"address\": \"adresa\",\r\n    \"role\": \"ADMIN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/users/update/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"update",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU0NzQ2NDgsImV4cCI6MTY4NTQ5MjY0OH0.pIi3cAvtwXFlqdSYwl1zi4GWKBmYlO6B34_KzVjf-k0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/users/delete/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "BOOKING",
+					"item": [
+						{
+							"name": "Add booking",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU1NTYyNzksImV4cCI6MTY4NTU3NDI3OX0.Uv0tbzNvUx6yZ4l3U921ttdYEFdljNQRCT5EY6olJ1k",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userEmail\": \"string1\",\r\n    \"flightIds\": [\r\n        4\r\n    ],\r\n    \"flightClasses\": [\r\n        \"ECONOMY\"\r\n    ],\r\n    \"bookingStatus\": \"UP\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/bookings/add",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"bookings",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get bookings",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU1NTMxNDksImV4cCI6MTY4NTU3MTE0OX0.lPCVJazuNinDc665uxZsIjwZYG8pI1V2DpdwMsy6ac4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/bookings/get",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"bookings",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update booking",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU1NTU4MzcsImV4cCI6MTY4NTU3MzgzN30.I7a557tGEEjkJ9eUehCgqb0PIAZMwaqdo8n60H9JVUQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"bookingStatus\": \"CANCELLED_APPROVED\",\r\n  \"cancellationAnswer\": \"It had to be done\",\r\n  \"user\": {\r\n    \"id\": 2\r\n  },\r\n  \"flightBookings\": [\r\n    {\r\n      \"id\": 1\r\n    },\r\n    {\r\n      \"id\": 2\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/bookings/update/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"bookings",
+										"update",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete booking",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU1NTM5NTEsImV4cCI6MTY4NTU3MTk1MX0.963OFX25z5vSItU_8-bwPCahStm7H705yHK9PqU6qq4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/bookings/delete/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"bookings",
+										"delete",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "FLIGHT",
+					"item": [
+						{
+							"name": "Add flight",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU2MTU5MDMsImV4cCI6MTY4NTYzMzkwM30.cwuHv6c1A-gOKAkshKSy3NJp6IcJlhcKELJeUAeWmHU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"airlineCode\": \"LH\",\r\n  \"flightNumber\": \"MM345\",\r\n  \"origin\": \"ABC\",\r\n  \"destination\": \"DEF\",\r\n  \"flightDate\": \"2023-07-01\",\r\n  \"departureTime\": \"10-30\",\r\n  \"aircraftType\": \"Boeing 737\",\r\n  \"flightTypes\": [\r\n    {\r\n      \"totalSeats\": 150,\r\n      \"flightClasses\": \"ECONOMY\"\r\n    },\r\n    {\r\n      \"totalSeats\": 50,\r\n      \"flightClasses\": \"BUSINESS\"\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/flights/add",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"flights",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get flights",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU2MTI4NjUsImV4cCI6MTY4NTYzMDg2NX0.uImetuXSbnUsiEINLmJPUzyx7AUdgk89SW0iyybreOg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/flights/get",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"flights",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update flight",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU1NTgzNTcsImV4cCI6MTY4NTU3NjM1N30.s2wfyu5uFH67KSsPvVbMXHeVjdHDFQkfNibCUU1vWCM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"airlineCode\": \"LX\",\r\n  \"flightNumber\": \"AB345\",\r\n  \"origin\": \"ROM\",\r\n  \"destination\": \"TIA\",\r\n  \"flightDate\": \"2023-05-31\",\r\n  \"departureTime\": \"08-30\",\r\n  \"aircraftType\": \"Boeing 747\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/flights/update/7",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"flights",
+										"update",
+										"7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete flight",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU2MTU5MDMsImV4cCI6MTY4NTYzMzkwM30.cwuHv6c1A-gOKAkshKSy3NJp6IcJlhcKELJeUAeWmHU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/flights/delete/8",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"flights",
+										"delete",
+										"8"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ADMIN",
+			"item": [
+				{
+					"name": "Find user by email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU1NTMxNDksImV4cCI6MTY4NTU3MTE0OX0.lPCVJazuNinDc665uxZsIjwZYG8pI1V2DpdwMsy6ac4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/email/jane.smith@example.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"email",
+								"jane.smith@example.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update booking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/bookings/update/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bookings",
+								"update",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get flight users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU1NTcyMDksImV4cCI6MTY4NTU3NTIwOX0.QyM658YzYvcySFRa0Cxp0LjWvC7ku1gbzBz4J_YonN0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/flights/users/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"flights",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Flight",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU1NTcyMDksImV4cCI6MTY4NTU3NTIwOX0.QyM658YzYvcySFRa0Cxp0LjWvC7ku1gbzBz4J_YonN0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"origin\": \"LAX\",\r\n    \"destination\": \"JFK\",\r\n    \"flightDate\": \"2023-06-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/flights/search",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"flights",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "TRAVELLER",
+			"item": [
+				{
+					"name": "Cancel booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJBVVRIT1JJVElFUyI6WyJST0xFX0FETUlOIl0sInN1YiI6InN0cmluZzEiLCJpYXQiOjE2ODU1NTU5OTIsImV4cCI6MTY4NTU3Mzk5Mn0.nBdOKZ4g0GXbijQxX3aaSXBLDuHpCUkOayx1OfBq5r8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/bookings/cancel/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bookings",
+								"cancel",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "LOGIN",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"emri\",\r\n    \"middleName\": \"mbiemri\",\r\n    \"lastname\": \"emriprap\",\r\n    \"email\": \"string1\",\r\n    \"password\": \"po\",\r\n    \"phoneNumber\" : \"0213\",\r\n    \"address\": \"rruga rruga rruga?\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"string1\",\r\n    \"password\": \"po\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/authenticate",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
